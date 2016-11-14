@@ -10,17 +10,21 @@
 
 /* Replace with your library code */
 
+/* sets all pins on a port to input*/
 void setPortInput(char port){
 	switch(convertToLower(port)){
 		case 'a':
 			DDRA = 0x00;
 			break;
 		case 'b':
-			DDRA = 0x00;
+			DDRB = 0x00;
 			break;
 		case 'c':
-			DDRA = 0x00;
+			DDRC = 0x00;
 			break;
+        case 'd':
+            DDRD = 0x00;
+            break;
 	}
 }
 
@@ -34,6 +38,26 @@ void setPinInput(char port, uint8_t pinNumber){
             break;
         case 'c':
             DDRC &= ~(1 << pinNumber);
+            break;
+        case 'd':
+            DDRD &= ~(1 << pinNumber);
+            break;
+    }
+}
+
+void setPinOutput(char port, uint8_t pinNumber){
+    switch(convertToLower(port)){
+        case 'a':
+            DDRA |= (1 << pinNumber);
+            break;
+        case 'b':
+            DDRB |= ~(1 << pinNumber);
+            break;
+        case 'c':
+            DDRC |= ~(1 << pinNumber);
+            break;
+        case 'd':
+            DDRD &= ~(1 << pinNumber);
             break;
     }
 }
@@ -49,6 +73,9 @@ void enableAllPullUpsPort(char port){
 		case 'c':
 			PORTC = 0xFF;
 			break;
+        case 'd':
+            PORTD = 0xFF;
+            break;
 	}
 }
 
@@ -63,6 +90,9 @@ void enableAllTriStatePort(char port){
 		case 'c':
 			PORTC = 0x00;
 			break;
+        case 'd':
+            PORTC = 0x00;
+            break;
 	}
 }
 
