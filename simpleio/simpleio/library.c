@@ -10,22 +10,35 @@
 
 /* Replace with your library code */
 
-/* sets all pins on a port to input*/
-void setPortInput(char port){
-	switch(convertToLower(port)){
-		case 'a':
-			DDRA = 0x00;
-			break;
-		case 'b':
-			DDRB = 0x00;
-			break;
-		case 'c':
-			DDRC = 0x00;
-			break;
-        case 'd':
-            DDRD = 0x00;
+void setPortMode(char port, char mode){
+    switch(convertToLower(port)){
+        case 'a':
+            if(convertToLower(mode) == 'o') {
+                DDRA = 0xFF;
+            } else {
+                DDRA = 0x00;
+            }
             break;
-	}
+        case 'b':
+            if(convertToLower(mode) == 'o') {
+                DDRB = 0xFF;
+            } else {
+                DDRB = 0x00;
+            }
+        case 'c':
+            if(convertToLower(mode) == 'o') {
+                DDRC = 0xFF;
+            } else {
+                DDRC = 0x00;
+            }
+        case 'd':
+            if(convertToLower(mode) == 'o') {
+                DDRD = 0xFF;
+            } else {
+                DDRD = 0x00;
+            }
+            break;
+    }
 }
 
 void setPinInput(char port, uint8_t pinNumber){
